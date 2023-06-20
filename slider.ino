@@ -1,3 +1,4 @@
+//Pins are set with values 
 const int potPin = A0;    
 const int buzzerPin = 9;  
 
