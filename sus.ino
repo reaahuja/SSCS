@@ -8,7 +8,7 @@ enum pins{
   echoPin,
   servoPin,
   potPin = 14,
-  pResistor = 15
+  pResistor = 16
 };
 
 int dist(){
@@ -27,32 +27,33 @@ class Note{
   public:
   Note& operator++(){
     int distance = dist();
-    int factor = dist2()?1:1.5;
-    this->note = distance>10?1000*factor:100*distance*factor;
+    int factor = dist2()?1:2;
+    this->note = distance>20?1000*factor:100*distance*factor;
     return *this;
   }
   int getNote(){
     return this->note;
   }
-  void changeVolume(int vol = 500){
+  void changeVolume(int vol = 0){
     analogWrite(buzzPin, vol);
   }
   private:
-  int note = 1000;
+  int note;
 };
 
 class play{
   public:
-  play(){
-    servo.writeMicroseconds(2500);
-  }
   void play_sound(){
     Note note;
-    note.changeVolume(map(analogRead(potPin), 0, 1023, 0, 255));
-    tone(buzzPin, (++note).getNote());
-  }
-  ~play(){
-    servo.writeMicroseconds(500);
+    if(map(analogRead(potPin), 0, 1023, 0, 255) == 255){
+      noTone(buzzPin);
+      servo.detach();
+    }
+    else{
+      servo.attach(servoPin);
+      note.changeVolume(map(analogRead(potPin), 0, 1023, 0, 255));
+      tone(buzzPin, (++note).getNote());
+    }
   }
 };
 
@@ -61,7 +62,7 @@ void setup() {
   pinMode(echoPin, INPUT);
   pinMode(buzzPin, OUTPUT);
   pinMode(pResistor, INPUT);
-  servo.attach(servoPin, 500, 2500);
+  servo.attach(servoPin);
 }
 
 int dist2(){
@@ -69,7 +70,10 @@ int dist2(){
 }
 
 void loop() {
+  servo.write(0);
   play test;
   test.play_sound();
+  delay(500);
+  servo.write(180);
   delay(500);
 }
