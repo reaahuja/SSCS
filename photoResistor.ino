@@ -1,32 +1,29 @@
 // Constants
-const int pResistor = A1; 
-const int ledPin = 13;  
+const int pResistor = A1;
+const int buzzerPin = 8;  // Pin for the buzzer
 
 // Variables
 int value;                // Store value from photoresistor (0-1023)
 
 void setup() {
-  pinMode(ledPin, OUTPUT);       // Set ledPin - 9 pin as an output
-  pinMode(pResistor, INPUT);     // Set pResistor - A0 pin as an input (optional)
-
-  Serial.begin(9600);            // Initialize serial communication
+  pinMode(pResistor, INPUT);     
+  pinMode(buzzerPin, OUTPUT);    
+  
+  Serial.begin(9600);            // Derial communication
 }
 
 void loop() {
-  value = analogRead(pResistor);  // Read the value from the photoresistor
+  value = analogRead(pResistor);  // Read the value from the photoresitor
   value = map(value, 1023, 0, 10, 0);
-  
-  Serial.print("Value: ");
-  Serial.println(value);
-  
+
   if (value == 0) {
-    Serial.println("Turn off");
-    digitalWrite(ledPin, LOW);    // Turn led off
+    Serial.println("high frequency");
+    tone(buzzerPin, 1000);      // high-frequency tone
   }
   else {
-    Serial.println("Turn on");
-    digitalWrite(ledPin, HIGH);   // Turn led on
+    Serial.println("low frequency");
+    tone(buzzerPin, 100);       // low-frequency tone
   }
-
-  delay(1000);                     // Small delay
+  
+  delay(1000);                   // Small delay
 }
