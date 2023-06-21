@@ -1,22 +1,19 @@
-//Pins are set with values 
-const int potPin = A0;    
-const int buzzerPin = 9;  
+const int potPin = A0;    // Analog input pin for the potentiometer
+const int buzzerPin = 8;  // Digital output pin for the buzzer
 
 void setup() {
   pinMode(buzzerPin, OUTPUT);  // Set the buzzer pin as an output
-  Serial.begin(9600);          
+  Serial.begin(9600);          // Initialize serial communication
 }
 
 void loop() {
   int potValue = analogRead(potPin);        // Read the analog value from the potentiometer
-  int frequency = map(potValue, 0, 1023, 100, 2000);  // Map the potentiometer value to a frequency range
+  int volume = map(potValue, 0, 1023, 0, 255);  // Map the potentiometer value to a volume range
   
-  tone(buzzerPin, frequency);  // Play tone on buzzer
+  analogWrite(buzzerPin, volume);  // PMW the buzzer 
   
-  Serial.print("Potentiometer Value: ");
-  Serial.print(potValue);
-  Serial.print(", Frequency: ");
-  Serial.println(frequency);
+  Serial.println("Potentiometer Value: ");
+  Serial.println(potValue);
   
-  delay(100);  // Small delay
+  delay(1000);  // Small delay between readings
 }
