@@ -25,20 +25,22 @@ int dist(){
 
 class Note{
   public:
-  Note& operator++(){
+  void calibration(){
     int distance = dist();
     int factor = dist2()?1:2;
-    this->note = distance>20?1000*factor:100*distance*factor;
-    return *this;
+    this->note = distance > 20?1000:100*distance*factor;
+    Serial.println(this->note);
   }
+
   int getNote(){
     return this->note;
   }
+
   void changeVolume(int vol = 0){
     analogWrite(buzzPin, vol);
   }
   private:
-  int note;
+  int note = 1000;
 };
 
 class play{
@@ -52,12 +54,14 @@ class play{
     else{
       servo.attach(servoPin);
       note.changeVolume(map(analogRead(potPin), 0, 1023, 0, 255));
-      tone(buzzPin, (++note).getNote());
+      note.calibration();
+      tone(buzzPin, note.getNote());
     }
   }
 };
 
 void setup() {
+  Serial.begin(9600);
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
   pinMode(buzzPin, OUTPUT);
@@ -66,7 +70,10 @@ void setup() {
 }
 
 int dist2(){
-  return map(analogRead(pResistor), 1023, 0, 10, 0);
+  int temp = map(analogRead(pResistor), 1023, 0, 10, 0);
+  if(temp < 4)
+    return 0;
+  return 1;
 }
 
 void loop() {
