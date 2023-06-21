@@ -28,7 +28,7 @@ class Note{
   void calibration(){
     int distance = dist();
     int factor = dist2()?1:2;
-    this->note = distance > 20?1000:100*distance*factor;
+    this->note = distance > 20?1000*factor:100*distance*factor;
     Serial.println(this->note);
   }
 
