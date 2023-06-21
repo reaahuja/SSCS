@@ -38,7 +38,7 @@ class Note{
     analogWrite(buzzPin, vol);
   }
   private:
-  int note;
+  int note = 1000;
 };
 
 class play{
