@@ -18,11 +18,11 @@ void loop() {
 
   if (value == 0) {
     Serial.println("high frequency");
-    tone(buzzerPin, 1000);      // high-frequency tone
+    tone(buzzerPin, 1000);      // High-frequency tone
   }
   else {
     Serial.println("low frequency");
-    tone(buzzerPin, 100);       // low-frequency tone
+    tone(buzzerPin, 100);       // Low-frequency tone
   }
   
   delay(1000);                   // Small delay
