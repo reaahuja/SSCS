@@ -1,0 +1,19 @@
+----------------------------------------------------------------------------------------------------------------------------------
+NCDrill File Report For: Music Box Shield.PcbDoc   6/28/2023  5:16:10 PM
+----------------------------------------------------------------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : Music Box Shield.TXT
+
+Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
+----------------------------------------------------------------------------------------------------------------------------------
+T1      24mil (0.599mm)                                           Round             2         PTH        0.20inch (5.00mm)
+T2      26mil (0.65mm)                                            Round             2         PTH        0.26inch (6.56mm)
+T3      28mil (0.711mm)                                           Round             1         PTH        0.00inch (0.00mm)
+T4      30mil (0.762mm)                                           Round             32        PTH        6.31inch (160.34mm)
+T5      35mil (0.899mm)                                           Round             20        PTH        3.29inch (83.65mm)
+T6      126mil (3.2mm)                                            Round             4         PTH        5.25inch (133.29mm)
+----------------------------------------------------------------------------------------------------------------------------------
+Totals                                                                              61
+
+Total Processing Time (hh:mm:ss) : 00:00:00

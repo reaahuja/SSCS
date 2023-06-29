@@ -1,0 +1,20 @@
+Output: Gerber X2 Files
+Type  : GerberX2
+From  : Variant [[No Variations]] of PCB Document [Music Box Shield.PcbDoc]
+   Generated File[Music Box Shield_Copper_Signal_Top.gbr]
+   Generated File[Music Box Shield_Copper_Signal_Bot.gbr]
+   Generated File[Music Box Shield_Legend_Top.gbr]
+   Generated File[Music Box Shield_Legend_Bot.gbr]
+   Generated File[Music Box Shield_Soldermask_Top.gbr]
+   Generated File[Music Box Shield_Soldermask_Bot.gbr]
+   Generated File[Music Box Shield_Paste_Top.gbr]
+   Generated File[Music Box Shield_Paste_Bot.gbr]
+   Generated File[SimpleBuck_Profile.gbr]
+   Generated File[Music Box Shield.EXTREP]
+   Generated File[Music Box Shield.REP]
+
+
+Files Generated   : 11
+Documents Printed : 0
+
+Finished Output Generation At 5:16:14 PM On 6/28/2023
