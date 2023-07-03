@@ -72,3 +72,39 @@ void pwm_out(int position) {
   int pulseDuration = map(position, 0, 180, 1000, 2000); 
   servoMotor.writeMicroseconds(pulseDuration); 
 }
+
+/*
+#include <Servo.h>
+
+Servo servoMotor;
+
+void setup() {
+  servoMotor.attach(9);
+}
+
+void loop() {
+  int servo_position = 1500; // arbitrary starting values
+  int target = 500;
+  const int speed = 5;
+  //int speed = analogRead(A1);
+
+  while (true) {
+    if (servo_position < target) {
+      servo_position += speed;
+    }
+    if (servo_position > target) {
+      servo_position -= speed;
+    }
+    if (abs(servo_position - target) < speed) {
+      break;
+    }
+    pwm_out(servo_position);
+    delay(20);
+  }
+}
+
+void pwm_out(int position) {
+  servoMotor.writeMicroseconds(position);
+}
+
+*/
