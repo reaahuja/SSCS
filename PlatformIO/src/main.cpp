@@ -15,6 +15,7 @@ void setup() {
   Serial.begin(115200);
   synth.tone_type(SQUARE_WAVE);
   pinMode(A0, INPUT);
+  pinMode(A1, INPUT);
   servoMotor.attach(10);
 }
 
