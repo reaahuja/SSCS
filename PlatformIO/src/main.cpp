@@ -10,8 +10,6 @@ int volumes[3] = { 50, 150, 255 };
 // int frequencies[14] = { 440, 494, 523, 587, 659, 698, 784, 880, 988, 1047, 1175, 1319, 1397, 1568 };
 int frequencies[8] = { 1047, 1175, 1319, 1397, 1568, 1760, 1976, 2093 };
 
-void pwn_out(int position);
-
 
 void setup() {
   Serial.begin(115200);
@@ -23,22 +21,35 @@ void setup() {
 
 void loop() {
 
-  int servo_position = 1500;
-  int target = 500;
-  int speed = analogRead(A1);
+  int speed = map(analogRead(A1), 0, 1023, 0, 10);
+  int startAngle = 0;
+  int endAngle = 180;
+  int stepSize = 1;
+  int delayTime = 15;
+  int photoresistorValue = analogRead(A0);
 
-
-  while (true) {
-    if (servo_position < target) {
-      servo_position += speed;
+  if (speed == 10){
+    for (int angle = startAngle; angle <= endAngle; angle += stepSize) {
+      servoMotor.write(angle);
+    // stepSize++;
+      delay(delayTime);
     }
-    if (servo_position > target) {
-      servo_position -= speed;
+    for (int angle = endAngle; angle >= startAngle; angle -= stepSize) {
+      servoMotor.write(angle);
+      //stepSize--;
+      delay(delayTime);
     }
-    if (abs(servo_position - target) < speed) {
-      break;
+  }else if (speed > 0 && speed < 10){
+    for (int angle = startAngle; angle <= endAngle; angle += stepSize) {
+      servoMotor.write(angle);
+      delay(delayTime);
     }
-    servoMotor.writeMicroseconds(servo_position);
+    for (int angle = endAngle; angle >= startAngle; angle -= stepSize) {
+      servoMotor.write(angle);
+      stepSize--;
+      delay(delayTime);
+    }
+  }
 
     int volRaw = map(analogRead(A0), 0, 1023, 0, 255);
     int fIdxRaw = map(ultrasonic.read(CM), 0, 12, 0, 7);
@@ -49,7 +60,8 @@ void loop() {
 
     synth.tone(freq, vol);
     delay(50);
-  }
+  
 }
+
 
 
