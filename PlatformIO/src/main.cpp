@@ -12,10 +12,14 @@ int frequencies[8] = { 1047, 1175, 1319, 1397, 1568, 1760, 1976, 2093 };
 
 void setup() {
   Serial.begin(115200);
-  synth.tone_type(SQUARE_WAVE );
-  //pinMode(A0, INPUT);
-  pinMode(A1, INPUT);
+  synth.tone_type(SQUARE_WAVE);
+  pinMode(A0, INPUT);
+  // pinMode(A1, INPUT);
   // servoMotor.attach(10);
+
+  // pinMode(9, OUTPUT);
+  // digitalWrite(9, HIGH);
+  // while (1);
 }
 
 void loop() {
